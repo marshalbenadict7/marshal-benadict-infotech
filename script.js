@@ -2,22 +2,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Contact Form
     const contactForm = document.getElementById("contactForm");
-    const formMessage = document.getElementById("formMessage");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
 
     if (contactForm) {
 
         contactForm.addEventListener("submit", function (event) {
 
-            // Stop form from refreshing the page
+            // Stop form from refreshing
             event.preventDefault();
 
+
             // Get input values
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const subject = document.getElementById("subject").value.trim();
-            const message = document.getElementById("message").value.trim();
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const subject =
+                document.getElementById("subject").value.trim();
+
+            const message =
+                document.getElementById("message").value.trim();
+
 
             // Check empty fields
+
             if (
                 name === "" ||
                 email === "" ||
@@ -25,32 +39,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 message === ""
             ) {
 
-                formMessage.innerHTML =
-                    "Please fill all fields.";
+                alert("Please fill all fields.");
 
                 return;
             }
 
+
             // Email validation
+
             const emailPattern =
                 /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+
             if (!emailPattern.test(email)) {
 
-                formMessage.innerHTML =
-                    "Please enter a valid email address.";
+                alert("Please enter a valid email address.");
 
                 return;
             }
 
-            // Success message
-            formMessage.innerHTML =
+
+            // Show success message
+
+            successMessage.classList.remove("d-none");
+
+
+            successMessage.innerHTML =
                 "Thank you! Your message has been submitted successfully.";
 
+
             // Clear form
+
             contactForm.reset();
 
         });
+
     }
 
 });
